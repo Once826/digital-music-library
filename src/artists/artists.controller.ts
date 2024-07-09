@@ -21,6 +21,11 @@ export class ArtistsController {
     return this.artistsService.create(createArtistDto);
   }
 
+  @Post('bulk-create')
+  async bulkCreate(@Body() createArtistDtos: CreateArtistDto[]) {
+    return this.artistsService.bulkCreate(createArtistDtos);
+  }
+
   @Get()
   findAll(): Promise<Artist[]> {
     return this.artistsService.findAll();

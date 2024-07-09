@@ -1,15 +1,21 @@
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
-import { Types } from 'mongoose';
+import { Type } from 'class-transformer';
+import { IsString, IsNotEmpty, IsOptional, IsArray } from 'class-validator';
+import { SongDto } from 'src/songs/dto/song.dto';
 
 export class CreateAlbumDto {
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  title: string;
 
   @IsString()
   @IsOptional()
-  readonly description?: string;
+  description?: string;
 
+  @IsArray()
+  @Type(() => SongDto)
+  songs: SongDto[];
+
+  @IsString()
   @IsNotEmpty()
-  readonly artist: Types.ObjectId;
+  artist: string;
 }

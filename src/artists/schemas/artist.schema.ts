@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { Document, HydratedDocument } from 'mongoose';
 import { Album } from 'src/albums/schemas/album.schema';
 
 export type ArtistDocument = HydratedDocument<Artist>;
 
 @Schema()
-export class Artist {
+export class Artist extends Document {
   @Prop({ required: true })
   name: string;
 

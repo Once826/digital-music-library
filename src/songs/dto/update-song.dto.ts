@@ -1,15 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
-import { Types } from 'mongoose';
+import { PartialType } from '@nestjs/mapped-types';
+import { SongDto } from './song.dto';
 
-export class UpdateSongDto {
-  @IsString()
-  @IsOptional()
-  readonly title?: string;
-
-  @IsString()
-  @IsOptional()
-  readonly length?: number;
-
-  @IsOptional()
-  readonly album?: Types.ObjectId;
-}
+export class UpdateSongDto extends PartialType(SongDto) {}

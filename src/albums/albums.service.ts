@@ -15,11 +15,11 @@ export class AlbumsService {
   }
 
   async findAll(): Promise<Album[]> {
-    return this.albumModel.find().populate('artist songs').exec();
+    return this.albumModel.find().populate('songs').exec();
   }
 
   async findOne(id: string): Promise<Album> {
-    return this.albumModel.findById(id).populate('artist songs').exec();
+    return this.albumModel.findById(id).populate('songs').exec();
   }
 
   async update(id: string, updateAlbumDto: UpdateAlbumDto): Promise<Album> {
