@@ -9,12 +9,20 @@ export interface Album {
     title: string,
     description: string,
     songs: Song[],
-    artistId: string,
+    artist: Artist,
 }
 
 export interface Song {
     _id: string,
     title: string,
     length: string,
-    albumId: string
+    album: AlbumSmall
+}
+
+interface AlbumSmall {
+    _id: string,
+    title: string,
+    description: string,
+    songs: string[],
+    artist: string,
 }

@@ -10,23 +10,24 @@ import {
 import { SongsService } from './songs.service';
 import { SongDto } from './dto/song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { Song } from './schemas/song.schema';
 
 @Controller('songs')
 export class SongsController {
   constructor(private readonly songsService: SongsService) {}
 
   @Post()
-  create(@Body() createSongDto: SongDto): Promise<SongDto> {
+  create(@Body() createSongDto: SongDto): Promise<Song> {
     return this.songsService.create(createSongDto);
   }
 
   @Get()
-  findAll(): Promise<SongDto[]> {
+  findAll(): Promise<Song[]> {
     return this.songsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<SongDto> {
+  findOne(@Param('id') id: string): Promise<Song> {
     return this.songsService.findOne(id);
   }
 
@@ -34,7 +35,7 @@ export class SongsController {
   update(
     @Param('id') id: string,
     @Body() updateSongDto: UpdateSongDto,
-  ): Promise<SongDto> {
+  ): Promise<Song> {
     return this.songsService.update(id, updateSongDto);
   }
 

@@ -9,37 +9,26 @@ import { Song } from './schemas/song.schema';
 export class SongsService {
   constructor(@InjectModel(Song.name) private songModel: Model<Song>) {}
 
-  async create(createSongDto: SongDto): Promise<SongDto> {
+  async create(createSongDto: SongDto): Promise<Song> {
     const createdSong = new this.songModel(createSongDto);
-    return this.toSongDto(await createdSong.save());
+    return createdSong.save();
   }
 
-  async findAll(): Promise<SongDto[]> {
-    return (await this.songModel.find().exec()).map((song) =>
-      this.toSongDto(song),
-    );
+  async findAll(): Promise<Song[]> {
+    return this.songModel.find().populate('album').exec();
   }
 
-  async findOne(id: string): Promise<SongDto> {
-    return this.toSongDto(await this.songModel.findById(id).exec());
+  async findOne(id: string): Promise<Song> {
+    return this.songModel.findById(id).populate('album').exec();
   }
 
-  async update(id: string, updateSongDto: UpdateSongDto): Promise<SongDto> {
-    return this.toSongDto(
-      await this.songModel
-        .findByIdAndUpdate(id, updateSongDto, { new: true })
-        .exec(),
-    );
+  async update(id: string, updateSongDto: UpdateSongDto): Promise<Song> {
+    return this.songModel
+      .findByIdAndUpdate(id, updateSongDto, { new: true })
+      .exec();
   }
 
   async remove(id: string): Promise<any> {
     return this.songModel.findByIdAndDelete(id).exec();
-  }
-
-  private toSongDto(song: Song): SongDto {
-    return {
-      title: song.title,
-      length: song.length,
-    };
   }
 }

@@ -8,4 +8,8 @@ export class SongDto {
   @IsString()
   @IsNotEmpty()
   length: string;
+
+  @IsString()
+  @IsNotEmpty()
+  album: string;
 }

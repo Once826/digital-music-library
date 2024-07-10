@@ -2,7 +2,7 @@ import { HomeFilled, AudioFilled, CustomerServiceFilled, ProfileFilled } from '@
 import { Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import React, { useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

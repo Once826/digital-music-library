@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BACKEND_API_ENDPOINT } from '../config/config';
-import { Album, Artist } from '../types/interfaces';
+import { Album, Artist, Song } from '../types/interfaces';
 
 async function SendGetRequest(url: string) {
     document.body.style.cursor = 'wait';
@@ -35,4 +35,14 @@ export async function GetAlbums() {
 export async function GetAlbum(albumId: string) {
     let url = `${BACKEND_API_ENDPOINT}/albums/${albumId}`;
     return await SendGetRequest(url) as Album;
+}
+
+export async function GetSongs() {
+    let url = `${BACKEND_API_ENDPOINT}/songs/`;
+    return await SendGetRequest(url) as Song[];
+}
+
+export async function GetSong(albumId: string) {
+    let url = `${BACKEND_API_ENDPOINT}/albums/${albumId}`;
+    return await SendGetRequest(url) as Song;
 }
