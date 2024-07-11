@@ -40,6 +40,7 @@ export class ArtistsService {
             ...createSongDto,
             album: album._id,
           });
+          await song.save();
           songIds.push(song._id);
         }
 

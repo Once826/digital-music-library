@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Typography, List, Skeleton } from 'antd';
-import { GetAlbum } from '../api/apiHelper';
-import { Album } from '../types/interfaces';
+import { GetAlbum, GetSongs } from '../api/apiHelper';
+import { Album, Song } from '../types/interfaces';
 
 const { Title, Text } = Typography;
 
 const AlbumDetailedComponent = () => {
     const { albumId } = useParams<{albumId: string}>();
     const [album, setAlbum] = useState<Album>();
+    const [songs, setSongs] = useState<Song[]>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchAlbumDetails = async () => {
         try {
             const response = await GetAlbum(albumId as string);
+            const songs = (await GetSongs()).filter(song => {return song.album._id === albumId });
+            setSongs(songs);
             setAlbum(response);
             setLoading(false);
         } catch (error) {
@@ -43,7 +46,7 @@ const AlbumDetailedComponent = () => {
             <Title level={2} style={{ marginTop: '60px', textAlign: 'left'}}>Tracklist</Title>
             <List
                 bordered
-                dataSource={album.songs}
+                dataSource={songs}
                 renderItem={(track, index) => (
                     <Link key={track._id} to={`/songs/${track._id}`}>
                         <List.Item>
