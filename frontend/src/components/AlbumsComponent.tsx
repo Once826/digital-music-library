@@ -1,4 +1,4 @@
-import { Card, List, Skeleton } from 'antd';
+import { Card, List, Skeleton, Typography } from 'antd';
 import { Album } from '../types/interfaces';
 import { useEffect, useState } from 'react';
 import { GetAlbums } from '../api/apiHelper';
@@ -25,6 +25,7 @@ const AlbumsComponent = () => {
 
     return (
         <>
+        <Typography.Title>Albums</Typography.Title>
             {loading ? (
                 <>
                     <Skeleton active />

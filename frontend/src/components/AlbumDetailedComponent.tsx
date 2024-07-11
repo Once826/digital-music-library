@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Typography, List, Skeleton } from 'antd';
 import { GetAlbum } from '../api/apiHelper';
 import { Album } from '../types/interfaces';
@@ -45,9 +45,11 @@ const AlbumDetailedComponent = () => {
                 bordered
                 dataSource={album.songs}
                 renderItem={(track, index) => (
-                <List.Item>
-                    <Title level={5}>{index + 1}. {track.title} - {track.length}</Title>
-                </List.Item>
+                    <Link key={track._id} to={`/songs/${track._id}`}>
+                        <List.Item>
+                            <Title level={5}>{index + 1}. {track.title} - {track.length}</Title>
+                        </List.Item>
+                    </Link>
                 )}
             />
             </Col>
