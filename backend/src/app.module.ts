@@ -7,6 +7,7 @@ import { SongsModule } from './songs/songs.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AppController } from './app.controller';
     ArtistsModule,
     AlbumsModule,
     SongsModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

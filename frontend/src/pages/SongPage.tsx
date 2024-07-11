@@ -1,18 +1,18 @@
 import { Layout } from 'antd';
 import SideBarComponent from '../components/SideBarComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import AlbumsComponent from '../components/AlbumsComponent';
+import SongDetailedComponent from '../components/SongDetailedComponent';
 
 const { Content, Footer } = Layout;
 
-export default function AlbumListPage() {
+export default function SongListPage() {
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <SideBarComponent />
             <Layout>
               <HeaderComponent />
               <Content style={{ margin: '0 16px' }}>
-              <AlbumsComponent />
+              <SongDetailedComponent />  
               </Content>
               <Footer style={{ textAlign: 'center' }}>
                 Digital Music Library ©{new Date().getFullYear()} Created by Botond Brem

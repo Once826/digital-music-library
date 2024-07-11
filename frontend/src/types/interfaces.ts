@@ -19,6 +19,12 @@ export interface Song {
     album: AlbumSmall
 }
 
+export interface SearchResult {
+    artists: Artist[],
+    albums: Album[],
+    songs: Song[],
+}
+
 interface AlbumSmall {
     _id: string,
     title: string,
